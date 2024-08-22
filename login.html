@@ -71,37 +71,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc",
-            authDomain: "bibleverbum.firebaseapp.com",
-            projectId: "bibleverbum",
-            storageBucket: "bibleverbum.appspot.com",
-            messagingSenderId: "1057293069044",
-            appId: "1:1057293069044:web:357837e7b5a98223b24ca1"
-        };
-
-        // Inicializar o Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        // Função de login
-        function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Login bem-sucedido, redirecionar para admin.html
-                    window.location.href = "admin.html";
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
-                    const alertBox = document.getElementById('alert-box');
-                    alertBox.textContent = errorMessage;
-                    alertBox.style.display = 'block';
-                });
-        }
+       function _0x233b(){const _0xf50d14=['admin.html','value','initializeApp','block','1057293069044','display','email','16448780uxBwtZ','message','321381ljCnph','1:1057293069044:web:357837e7b5a98223b24ca1','134718vEdgMI','bibleverbum','28vfaEUB','bibleverbum.firebaseapp.com','password','style','alert-box','350155ifHxGV','getElementById','href','1092960jsCizq','2202TxchQn','14310GmQOAp','signInWithEmailAndPassword','textContent','216BgbCRu','7483917odRptD'];_0x233b=function(){return _0xf50d14;};return _0x233b();}const _0x1a7554=_0xf1da;(function(_0x394c8b,_0x103a91){const _0x5648af=_0xf1da,_0x3befba=_0x394c8b();while(!![]){try{const _0xd0063d=-parseInt(_0x5648af(0x8b))/0x1+-parseInt(_0x5648af(0x86))/0x2*(-parseInt(_0x5648af(0x84))/0x3)+-parseInt(_0x5648af(0x8e))/0x4+-parseInt(_0x5648af(0x90))/0x5*(-parseInt(_0x5648af(0x8f))/0x6)+-parseInt(_0x5648af(0x94))/0x7+parseInt(_0x5648af(0x93))/0x8*(-parseInt(_0x5648af(0x82))/0x9)+parseInt(_0x5648af(0x80))/0xa;if(_0xd0063d===_0x103a91)break;else _0x3befba['push'](_0x3befba['shift']());}catch(_0x29e944){_0x3befba['push'](_0x3befba['shift']());}}}(_0x233b,0xa2e6f));const firebaseConfig={'apiKey':'AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc','authDomain':_0x1a7554(0x87),'projectId':_0x1a7554(0x85),'storageBucket':'bibleverbum.appspot.com','messagingSenderId':_0x1a7554(0x7d),'appId':_0x1a7554(0x83)};firebase[_0x1a7554(0x7b)](firebaseConfig);function _0xf1da(_0x8ff589,_0x20114a){const _0x233b41=_0x233b();return _0xf1da=function(_0xf1daed,_0x58419a){_0xf1daed=_0xf1daed-0x7b;let _0xd32aee=_0x233b41[_0xf1daed];return _0xd32aee;},_0xf1da(_0x8ff589,_0x20114a);}const auth=firebase['auth']();function login(){const _0x366483=_0x1a7554,_0x27a861=document[_0x366483(0x8c)](_0x366483(0x7f))['value'],_0x36f592=document[_0x366483(0x8c)](_0x366483(0x88))[_0x366483(0x96)];auth[_0x366483(0x91)](_0x27a861,_0x36f592)['then'](_0x11cd80=>{const _0x583a20=_0x366483;window['location'][_0x583a20(0x8d)]=_0x583a20(0x95);})['catch'](_0xd788c8=>{const _0x15420b=_0x366483,_0x22bb83=_0xd788c8[_0x15420b(0x81)],_0x15a573=document['getElementById'](_0x15420b(0x8a));_0x15a573[_0x15420b(0x92)]=_0x22bb83,_0x15a573[_0x15420b(0x89)][_0x15420b(0x7e)]=_0x15420b(0x7c);});}
     </script>
 </head>
 <body>

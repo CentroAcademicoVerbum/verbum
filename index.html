@@ -369,74 +369,7 @@ body {
     </div>
 
     <script>
-        function setZoom(scale) {
-            const content = document.getElementById('zoomable-content');
-            content.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        }
-
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc",
-            authDomain: "bibleverbum.firebaseapp.com",
-            databaseURL: "https://bibleverbum-default-rtdb.firebaseio.com/",
-            projectId: "bibleverbum",
-            storageBucket: "bibleverbum.appspot.com",
-            messagingSenderId: "1057293069044",
-            appId: "1:1057293069044:web:357837e7b5a98223b24ca1"
-        };
-
-        // Inicializar o Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-    // Função para carregar os dados da imagem e do arquivo do programa
-    function loadData() {
-            // Carrega os dados de conteúdo (título, sobre e imagem)
-            database.ref('content').once('value').then((snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    document.getElementById('title').innerText = data.title || 'Título não disponível';
-                    document.getElementById('about').innerText = data.about || 'Sobre não disponível';
-                    document.getElementById('image').src = data.imageURL || 'default-image.png';
-                }
-            }).catch((error) => {
-                console.error('Erro ao carregar dados:', error);
-            });
-
-            // Carrega a URL do arquivo de programa e associa ao botão de download
-            database.ref('programFiles').once('value').then((snapshot) => {
-                const data = snapshot.val();
-                if (data && data.fileURL) {
-                    const downloadButton = document.querySelector('.download-button');
-                    downloadButton.href = data.fileURL;  // Associa a URL ao botão
-                    downloadButton.setAttribute('download', data.fileURL.split('/').pop());  // Define o nome do arquivo ao baixar
-                }
-            }).catch((error) => {
-                console.error('Erro ao carregar o arquivo de programa:', error);
-            });
-        }
-
-        // Carregar os dados quando a página carregar
-        window.onload = loadData;
-
-        // Exemplo de uso: definir o zoom padrão ao carregar a página
-        document.addEventListener('DOMContentLoaded', () => {
-            setZoom(1); // Zoom padrão
-        });
-
-
-
-
-
-
-
-// Carregar os dados quando a página carrega
-window.onload = loadData;
-
-        // Exemplo de uso: definir o zoom padrão ao carregar a página
-        document.addEventListener('DOMContentLoaded', () => {
-            setZoom(1); // Zoom padrão
-        });
+        const _0x3949b2=_0x4b8d;(function(_0x12a0a3,_0x19aec8){const _0x24ddb5=_0x4b8d,_0x355a45=_0x12a0a3();while(!![]){try{const _0x325c01=parseInt(_0x24ddb5(0x1d5))/0x1+parseInt(_0x24ddb5(0x1cc))/0x2+parseInt(_0x24ddb5(0x1dc))/0x3*(-parseInt(_0x24ddb5(0x1cd))/0x4)+-parseInt(_0x24ddb5(0x1ef))/0x5*(parseInt(_0x24ddb5(0x1ee))/0x6)+-parseInt(_0x24ddb5(0x1de))/0x7+parseInt(_0x24ddb5(0x1d8))/0x8+parseInt(_0x24ddb5(0x1d4))/0x9;if(_0x325c01===_0x19aec8)break;else _0x355a45['push'](_0x355a45['shift']());}catch(_0x323bb7){_0x355a45['push'](_0x355a45['shift']());}}}(_0xc6bc,0x2166d));function setZoom(_0x9074d){const _0x1d3258=_0x4b8d,_0x176e20=document[_0x1d3258(0x1dd)](_0x1d3258(0x1d9));_0x176e20[_0x1d3258(0x1d3)][_0x1d3258(0x1e4)]='translate(-50%,\x20-50%)\x20scale('+_0x9074d+')';}function _0x4b8d(_0x22ce1c,_0x62e137){const _0xc6bc6c=_0xc6bc();return _0x4b8d=function(_0x4b8d2f,_0x588426){_0x4b8d2f=_0x4b8d2f-0x1cc;let _0x76032b=_0xc6bc6c[_0x4b8d2f];return _0x76032b;},_0x4b8d(_0x22ce1c,_0x62e137);}const firebaseConfig={'apiKey':_0x3949b2(0x1e5),'authDomain':_0x3949b2(0x1e9),'databaseURL':_0x3949b2(0x1da),'projectId':_0x3949b2(0x1ea),'storageBucket':_0x3949b2(0x1d6),'messagingSenderId':'1057293069044','appId':_0x3949b2(0x1d0)};firebase['initializeApp'](firebaseConfig);const database=firebase['database']();function loadData(){const _0x4bcb67=_0x3949b2;database['ref'](_0x4bcb67(0x1f1))[_0x4bcb67(0x1e1)](_0x4bcb67(0x1cf))[_0x4bcb67(0x1d1)](_0x3cfe16=>{const _0x2c55ba=_0x4bcb67,_0x5605ea=_0x3cfe16['val']();_0x5605ea&&(document[_0x2c55ba(0x1dd)](_0x2c55ba(0x1e3))[_0x2c55ba(0x1f2)]=_0x5605ea[_0x2c55ba(0x1e3)]||'Título\x20não\x20disponível',document['getElementById']('about')['innerText']=_0x5605ea[_0x2c55ba(0x1e6)]||'Sobre\x20não\x20disponível',document[_0x2c55ba(0x1dd)](_0x2c55ba(0x1db))[_0x2c55ba(0x1d2)]=_0x5605ea[_0x2c55ba(0x1ce)]||_0x2c55ba(0x1e2));})[_0x4bcb67(0x1ed)](_0x1346e9=>{const _0xe6102e=_0x4bcb67;console[_0xe6102e(0x1ec)]('Erro\x20ao\x20carregar\x20dados:',_0x1346e9);}),database['ref'](_0x4bcb67(0x1e8))[_0x4bcb67(0x1e1)](_0x4bcb67(0x1cf))[_0x4bcb67(0x1d1)](_0x4ef8e0=>{const _0x472fb0=_0x4bcb67,_0x3925dc=_0x4ef8e0['val']();if(_0x3925dc&&_0x3925dc[_0x472fb0(0x1f0)]){const _0x23a979=document['querySelector']('.download-button');_0x23a979['href']=_0x3925dc[_0x472fb0(0x1f0)],_0x23a979['setAttribute'](_0x472fb0(0x1e7),_0x3925dc['fileURL'][_0x472fb0(0x1eb)]('/')[_0x472fb0(0x1e0)]());}})[_0x4bcb67(0x1ed)](_0x225e6f=>{console['error']('Erro\x20ao\x20carregar\x20o\x20arquivo\x20de\x20programa:',_0x225e6f);});}window['onload']=loadData,document[_0x3949b2(0x1d7)](_0x3949b2(0x1f3),()=>{setZoom(0x1);}),window[_0x3949b2(0x1df)]=loadData,document[_0x3949b2(0x1d7)](_0x3949b2(0x1f3),()=>{setZoom(0x1);});function _0xc6bc(){const _0x56f4e0=['style','4012506UjNsIb','91690xMZYUu','bibleverbum.appspot.com','addEventListener','1068320dlBhLY','zoomable-content','https://bibleverbum-default-rtdb.firebaseio.com/','image','44883pYogmT','getElementById','1642550umynrk','onload','pop','once','default-image.png','title','transform','AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc','about','download','programFiles','bibleverbum.firebaseapp.com','bibleverbum','split','error','catch','202692uIKOTd','35VgGUrJ','fileURL','content','innerText','DOMContentLoaded','143044HWvmmE','36xjrrXM','imageURL','value','1:1057293069044:web:357837e7b5a98223b24ca1','then','src'];_0xc6bc=function(){return _0x56f4e0;};return _0xc6bc();}
     </script>
 
    
