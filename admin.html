@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c;
+            color: #ddd;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 5% auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f0a500;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #f0a500;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #333;
+            color: #ddd;
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: block;
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #ddd;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .upload-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .upload-button:hover {
+            background-color: #cc8400;
+        }
+
+        .alert {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: #f0a500;
+            border: 1px solid #444;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                margin: 10% 2%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            label, input[type="text"], textarea, .custom-file-upload, .upload-button {
+                font-size: 13px;
+            }
+        }
+    </style>
+    <!-- Importar Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc",
+            authDomain: "bibleverbum.firebaseapp.com",
+            databaseURL: "https://bibleverbum-default-rtdb.firebaseio.com/",
+            projectId: "bibleverbum",
+            storageBucket: "bibleverbum.appspot.com",
+            messagingSenderId: "1057293069044",
+            appId: "1:1057293069044:web:357837e7b5a98223b24ca1"
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const storage = firebase.storage();
+
+        // Função para salvar os dados e a imagem
+        function saveData() {
+            const title = document.getElementById('title').value;
+            const about = document.getElementById('about').value;
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const storageRef = storage.ref('images/' + file.name);
+                const uploadTask = storageRef.put(file);
+
+                uploadTask.on('state_changed',
+                    function(snapshot) {
+                        // Monitorar o progresso do upload (opcional)
+                    },
+                    function(error) {
+                        console.error('Erro ao fazer upload da imagem:', error);
+                        showAlert('Erro ao fazer upload da imagem. Por favor, tente novamente.');
+                    },
+                    function() {
+                        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                            const data = {
+                                title: title,
+                                about: about,
+                                imageURL: downloadURL
+                            };
+
+                            database.ref('content').set(data, (error) => {
+                                if (error) {
+                                    console.error('Erro ao salvar dados:', error);
+                                    showAlert('Erro ao salvar dados. Por favor, tente novamente.');
+                                } else {
+                                    showAlert('Dados salvos com sucesso!');
+                                }
+                            });
+                        });
+                    }
+                );
+            } else {
+                const data = {
+                    title: title,
+                    about: about,
+                    imageURL: null
+                };
+
+                database.ref('content').set(data, (error) => {
+                    if (error) {
+                        console.error('Erro ao salvar dados:', error);
+                        showAlert('Erro ao salvar dados. Por favor, tente novamente.');
+                    } else {
+                        showAlert('Dados salvos com sucesso!');
+                    }
+                });
+            }
+        }
+
+        // Função para upload de arquivos para a pasta 'programFiles/'
+        function uploadProgramFile() {
+            const programFileInput = document.getElementById('program-file-input');
+            const programFile = programFileInput.files[0];
+
+            if (programFile) {
+                const storageRef = storage.ref('programFiles/' + programFile.name);
+                const uploadTask = storageRef.put(programFile);
+
+                uploadTask.on('state_changed',
+                    function(snapshot) {
+                        // Monitorar o progresso do upload (opcional)
+                    },
+                    function(error) {
+                        console.error('Erro ao fazer upload do arquivo:', error);
+                        showAlert('Erro ao fazer upload do arquivo. Por favor, tente novamente.');
+                    },
+                    function() {
+                        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                            // Exibe um alerta com a URL do arquivo enviado
+                            showAlert('Arquivo de programa enviado com sucesso! URL: ' + downloadURL);
+
+                            // Salva a URL do arquivo de programa no Firebase Realtime Database
+                            database.ref('programFiles').set({
+                                fileURL: downloadURL
+                            });
+                        });
+                    }
+                );
+            } else {
+                showAlert('Por favor, selecione um arquivo primeiro.');
+            }
+        }
+
+        // Função para mostrar alerta
+        function showAlert(message) {
+            const alertBox = document.getElementById('alert-box');
+            alertBox.textContent = message;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+        <h1>Painel de Administração</h1>
+        <div>
+            <label for="title">Título:</label>
+            <input type="text" id="title" />
+        </div>
+        <div>
+            <label for="about">Sobre:</label>
+            <textarea id="about"></textarea>
+        </div>
+        <div>
+            <label for="file-input" class="custom-file-upload">Escolher Imagem</label>
+            <input type="file" id="file-input" />
+        </div>
+        <button class="upload-button" onclick="saveData()">Salvar</button>
+        
+        <div>
+            <label for="program-file-input" class="custom-file-upload">Escolher Arquivo de Programa</label>
+            <input type="file" id="program-file-input" />
+        </div>
+        <button class="upload-button" onclick="uploadProgramFile()">Upload Arquivo de Programa</button>
+
+        <div id="alert-box" class="alert"></div>
+    </div>
+</body>
+</html>

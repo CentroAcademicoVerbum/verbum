@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbum Oficial</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+   
+   <style>
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 105%;
+    overflow: auto;
+    font-family: 'Bree Serif', serif;
+    background: url('teste2.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-y: auto; /* Habilita a rolagem apenas no eixo Y */
+    overflow-x: hidden; /* Desabilita a rolagem no eixo X */
+}
+    
+
+body {
+    font-size: 2vw; /* O tamanho da fonte será 2% da largura da viewport */
+}
+@media (max-width: 768px) {
+    .text-container {
+        font-size: 1.5vw;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .text-container {
+        font-size: 1vw;
+    }
+}
+
+@media (min-width: 1201px) {
+    .text-container {
+        font-size: 0.8vw;
+    }
+}
+
+
+.viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+   
+}
+
+.content {
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    box-sizing: border-box;
+}
+
+.download-button {
+    position: absolute;
+    background-color: #ffba46;
+    color: black;
+    border: none;
+    padding: 20px 40px;
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    left: 50%;
+    top: 76.5%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+
+.login-icon {
+    position: absolute;
+        
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: -95%;
+    }
+
+    
+
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: -2%; /* Usar porcentagem para melhor responsividade */
+    transform: translateY(-50%);
+    width: 80%; /* Ajustar largura para se adaptar a diferentes telas */
+    max-width: 18rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .text-container {
+        left: 3%; /* Ajuste para telas menores */
+        width: 94%;
+        font-size: 0.8rem; /* Ajustar tamanho da fonte para dispositivos menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container {
+        left: 2%;
+        width: 96%;
+        font-size: 0.7rem; /* Ajuste adicional para dispositivos muito pequenos */
+    }
+}
+
+
+.text-container h1 {
+    margin: 0 0 0.5rem 0;
+}
+
+.text-container p {
+    margin: 0;
+}
+
+
+
+
+
+.image-container {                     /*IMAGEM DO APP*/
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 30rem;
+    z-index: 998;
+}
+
+.image-container img {                      /*IMAGEM DO APP*/
+    width: 100%;
+    max-height: 22rem;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+
+
+
+
+.top-bar img {
+    position: absolute;
+    top: 50%;
+    left: 7%;
+    transform: translate(-50%, -50%);
+    max-width: 10rem;
+    z-index: 2000;
+}
+
+.title-container {               /*numero da versao*/
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1001;
+}
+
+.versao-container {              /*VERSÃO ATUAL*/
+    position: relative;
+    top: 12rem;
+    font-size: 3rem;
+    color: #ffba46;
+}
+
+.top-bar {
+    background-color: #00232E;
+    padding: 1.7rem;
+    border-bottom: solid 1px white;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright-text {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+}
+
+    </style>
+</head>
+<body>
+    <div class="viewport">
+        <div class="top-bar">
+            <img src="verbumlogo.png" alt="Logo Verbum">
+            <a href="login.html" class="login-icon">
+                <i class="fa fa-sign-in"></i>
+            </a>
+        </div>
+        <div class="content" id="zoomable-content">
+            <div class="title-container" id="title">Título Inicial</div>
+            <div class="main-container">
+                <div class="text-container">
+                    <h1>SOBRE</h1>
+                    <p id="about">Sobre</p>
+                </div>
+                <div class="versao-container">
+                    <p id="versao">Versão Atual</p>
+                </div>
+                <div class="image-container">
+                    <img id="image" src="" alt="Imagem">
+                </div>
+            </div>
+            <div class="verbumlogo">
+                
+            </div>
+            <a class="download-button" href="#" download="programFiles">DOWNLOAD</a>
+
+            <p class="copyright-text">© 2024 LuanHenry2004. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        function setZoom(scale) {
+            const content = document.getElementById('zoomable-content');
+            content.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        }
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD1eF2x2BO3GPUp85dAkkLUO6gIhoB3hHc",
+            authDomain: "bibleverbum.firebaseapp.com",
+            databaseURL: "https://bibleverbum-default-rtdb.firebaseio.com/",
+            projectId: "bibleverbum",
+            storageBucket: "bibleverbum.appspot.com",
+            messagingSenderId: "1057293069044",
+            appId: "1:1057293069044:web:357837e7b5a98223b24ca1"
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+    // Função para carregar os dados da imagem e do arquivo do programa
+    function loadData() {
+            // Carrega os dados de conteúdo (título, sobre e imagem)
+            database.ref('content').once('value').then((snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    document.getElementById('title').innerText = data.title || 'Título não disponível';
+                    document.getElementById('about').innerText = data.about || 'Sobre não disponível';
+                    document.getElementById('image').src = data.imageURL || 'default-image.png';
+                }
+            }).catch((error) => {
+                console.error('Erro ao carregar dados:', error);
+            });
+
+            // Carrega a URL do arquivo de programa e associa ao botão de download
+            database.ref('programFiles').once('value').then((snapshot) => {
+                const data = snapshot.val();
+                if (data && data.fileURL) {
+                    const downloadButton = document.querySelector('.download-button');
+                    downloadButton.href = data.fileURL;  // Associa a URL ao botão
+                    downloadButton.setAttribute('download', data.fileURL.split('/').pop());  // Define o nome do arquivo ao baixar
+                }
+            }).catch((error) => {
+                console.error('Erro ao carregar o arquivo de programa:', error);
+            });
+        }
+
+        // Carregar os dados quando a página carregar
+        window.onload = loadData;
+
+        // Exemplo de uso: definir o zoom padrão ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            setZoom(1); // Zoom padrão
+        });
+
+
+
+
+
+
+
+// Carregar os dados quando a página carrega
+window.onload = loadData;
+
+        // Exemplo de uso: definir o zoom padrão ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            setZoom(1); // Zoom padrão
+        });
+    </script>
+
+   
+    
+</body>
+</html>
