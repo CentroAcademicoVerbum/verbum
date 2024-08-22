@@ -15,8 +15,7 @@
     
    
    <style>
-
-  body, html {
+body, html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -28,36 +27,49 @@
     overflow-y: auto; /* Habilita a rolagem apenas no eixo Y */
     overflow-x: hidden; /* Desabilita a rolagem no eixo X */
 }
-    
+
+
+
+
+@media (max-width: 768px) {
+    body, html {
+        height: 1500px; /* Permite que a altura cresça com o conteúdo */
+        overflow-y: scroll; /* Adiciona a barra de rolagem lateral */
+    } }
+
+
+
+
+
+
+
 
 body {
     font-size: 2vw; /* O tamanho da fonte será 2% da largura da viewport */
 }
+
+/* Estilos para dispositivos móveis */
 @media (max-width: 768px) {
     .text-container {
-        font-size: 1.5vw;
+        top: 85%; /* Ajusta a posição do texto para que fique abaixo do botão */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza o texto horizontalmente */
+        width: 80%;
+        text-align: center;
+        font-size: 1rem; /* Ajuste o tamanho da fonte conforme necessário */
+    }
+
+    .download-button {
+        top: 75%; /* Ajusta a posição do botão */
+        transform: translate(-50%, 0);
     }
 }
-
-@media (min-width: 769px) and (max-width: 1200px) {
-    .text-container {
-        font-size: 1vw;
-    }
-}
-
-@media (min-width: 1201px) {
-    .text-container {
-        font-size: 0.8vw;
-    }
-}
-
 
 .viewport {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
-   
 }
 
 .content {
@@ -86,8 +98,6 @@ body {
     text-align: center;
 }
 
-
-
 .main-container {
     display: flex;
     flex-direction: column;
@@ -96,21 +106,16 @@ body {
     padding-top: 5rem;
 }
 
-
 .login-icon {
     position: absolute;
-        
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-right: -95%;
-    }
-
-    
-
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: -95%;
+}
 
 .text-container {
     position: absolute;
@@ -147,6 +152,9 @@ body {
 }
 
 
+
+
+
 .text-container h1 {
     margin: 0 0 0.5rem 0;
 }
@@ -155,12 +163,8 @@ body {
     margin: 0;
 }
 
-
-
-
-
-.image-container {                     /*IMAGEM DO APP*/
-    position: fixed;
+.image-container {
+    position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -168,16 +172,34 @@ body {
     z-index: 998;
 }
 
-.image-container img {                      /*IMAGEM DO APP*/
+
+
+@media (max-width: 768px) {
+    .image-container {
+        top: -5%; /* Ajuste a posição da imagem mais próxima do topo */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza horizontalmente */
+        max-width: 40%; /* Reduz o tamanho da imagem para caber melhor na tela móvel */
+    }
+
+    @media (max-width: 400px) {
+    .image-container {
+        top: -5%; /* Ajuste a posição da imagem mais próxima do topo */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza horizontalmente */
+        max-width: 36%; /* Reduz o tamanho da imagem para caber melhor na tela móvel */
+    }
+    }
+}
+
+
+
+.image-container img {
     width: 100%;
     max-height: 22rem;
     border-radius: 10px;
     object-fit: contain;
 }
-
-
-
-
 
 .top-bar img {
     position: absolute;
@@ -188,7 +210,7 @@ body {
     z-index: 2000;
 }
 
-.title-container {               /*numero da versao*/
+.title-container {
     position: absolute;
     top: 35%;
     left: 50%;
@@ -201,11 +223,84 @@ body {
     z-index: 1001;
 }
 
-.versao-container {              /*VERSÃO ATUAL*/
+@media (max-width: 768px ) {
+    .title-container{
+        top: -90px;
+    }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .text-container {
+        top: 37%; /* Ajusta a posição do texto 'Sobre' para ficar abaixo do botão de download */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza o texto horizontalmente */
+        width: 80%;
+        text-align: center;
+        font-size: 1rem; /* Ajuste o tamanho da fonte conforme necessário */
+        position: absolute;
+    }
+}
+
+@media (max-width: 768px) {
+    .download-button {
+        top: 31%; /* Ajuste a posição do botão mais próxima do topo */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza horizontalmente */
+        font-size: 1rem; /* Ajuste o tamanho do texto no botão se necessário */
+    }
+}
+
+@media (max-width: 768px) {
+    .copyright-text {
+        top: 5%; /* Ajuste a posição do texto de copyright mais próxima do topo */
+        left: 50%;
+        transform: translate(-50%, 0); /* Centraliza horizontalmente */
+        font-size: 0.9rem; /* Ajuste o tamanho da fonte para o texto de copyright */
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 1rem;
+        text-align: center;
+        background-color: #001a22;
+        position: relative; /* Adiciona position relative para ajudar a posicionar o ícone */
+    }
+
+    .top-bar img {
+        max-width: 10rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login-icon {
+        margin-left: -10px;
+        font-size: 25px; /* Ajusta o tamanho do ícone */
+        color: white; /* Garante que a cor do ícone seja visível */
+        z-index: 2000; /* Garante que o ícone fique acima de outros elementos */
+        display: block; /* Garante que o ícone seja exibido */
+    }
+}
+
+
+
+.versao-container {
     position: relative;
     top: 12rem;
     font-size: 3rem;
     color: #ffba46;
+}
+
+
+@media (max-width: 768px ) {
+    .versao-container{
+        top: -260px;
+    }
 }
 
 .top-bar {
@@ -233,6 +328,11 @@ body {
     text-align: center;
     width: 100%;
     z-index: 1000;
+}
+@media (max-width: 768px ) {
+    .copyright-text{
+        top: 1200px;
+    }
 }
 
     </style>
