@@ -31,11 +31,12 @@ body, html {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     body, html {
-        height: 1500px; /* Permite que a altura cresça com o conteúdo */
-        overflow-y: scroll; /* Adiciona a barra de rolagem lateral */
-    } }
+        min-height: 185vh; /* Garante que a altura mínima seja a altura da tela */
+        overflow-y: auto; /* Adiciona a barra de rolagem apenas quando necessário */
+    }
+}
 
 
 
@@ -49,7 +50,7 @@ body {
 }
 
 /* Estilos para dispositivos móveis */
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .text-container {
         top: 85%; /* Ajusta a posição do texto para que fique abaixo do botão */
         left: 50%;
@@ -135,7 +136,7 @@ body {
     box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .text-container {
         left: 3%; /* Ajuste para telas menores */
         width: 94%;
@@ -174,7 +175,7 @@ body {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .image-container {
         top: -5%; /* Ajuste a posição da imagem mais próxima do topo */
         left: 50%;
@@ -223,7 +224,7 @@ body {
     z-index: 1001;
 }
 
-@media (max-width: 768px ) {
+@media (max-width: 1012px ) {
     .title-container{
         top: -90px;
     }
@@ -233,7 +234,7 @@ body {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .text-container {
         top: 37%; /* Ajusta a posição do texto 'Sobre' para ficar abaixo do botão de download */
         left: 50%;
@@ -245,16 +246,16 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .download-button {
-        top: 31%; /* Ajuste a posição do botão mais próxima do topo */
+        top: 25%; /* Ajuste a posição do botão mais próxima do topo */
         left: 50%;
         transform: translate(-50%, 0); /* Centraliza horizontalmente */
-        font-size: 1rem; /* Ajuste o tamanho do texto no botão se necessário */
+        font-size: 1.5rem; /* Ajuste o tamanho do texto no botão se necessário */
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .copyright-text {
         top: 5%; /* Ajuste a posição do texto de copyright mais próxima do topo */
         left: 50%;
@@ -263,7 +264,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1012px) {
     .top-bar {
         padding: 1rem;
         text-align: center;
@@ -297,7 +298,7 @@ body {
 }
 
 
-@media (max-width: 768px ) {
+@media (max-width: 1012px ) {
     .versao-container{
         top: -260px;
     }
@@ -329,12 +330,18 @@ body {
     width: 100%;
     z-index: 1000;
 }
-@media (max-width: 768px ) {
+@media (max-width: 1012px ) {
     .copyright-text{
         top: 1200px;
+        font-size: 15px;
     }
 }
-
+@media (max-width: 363px ) {
+    .copyright-text{
+        top: 1200px;
+        font-size: 13px;
+    }
+}
     </style>
 </head>
 <body>
